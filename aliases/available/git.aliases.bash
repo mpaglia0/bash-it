@@ -77,13 +77,32 @@ alias gpatch="git format-patch -1"
 alias gnew="git log HEAD@{1}..HEAD@{0}"
 # Add uncommitted and unstaged changes to the last commit
 alias gcaa="git commit -a --amend -C HEAD"
+# Rebase with latest remote master
+alias gprom="git fetch origin master && git rebase origin/master && git update-ref refs/heads/master origin/master"
+alias gpunch="git push --force-with-lease"
 alias ggui="git gui"
 alias gcsam="git commit -S -am"
+# Stash aliases
 alias gst="git stash"
 alias gstb="git stash branch"
 alias gstd="git stash drop"
 alias gstl="git stash list"
+# Push introduced in git v2.13.2
+alias gstpu="git stash push"
+alias gstpum="git stash push -m"
+# Save deprecated since git v2.16.0
+# - aliases now resolve to push
+alias gsts="git stash push"
+alias gstsm="git stash push -m"
+# Alias gstpo added for symmetry with gstpu (push)
+# - gstp remains as alias for pop due to long-standing usage
+alias gstpo="git stash pop"
 alias gstp="git stash pop"
+# Switch aliases - Requires git v2.23+
+alias gsw="git switch"
+alias gswm="git switch master"
+alias gswc="git switch --create"
+alias gswt="git switch --track"
 alias gh='cd "$(git rev-parse --show-toplevel)"'
 # Show untracked files
 alias gu='git ls-files . --exclude-standard --others'
