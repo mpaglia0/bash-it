@@ -1,7 +1,7 @@
 #!/usr/bin/env bats
 
 load ../test_helper
-load ../../lib/composure
+load "${BASH_IT}/vendor/github.com/erichs/composure/composure.sh"
 load ../../completion/available/bash-it.completion
 
 function local_setup {
@@ -58,9 +58,14 @@ function __check_completion () {
   assert_line -n 0 "vagrant vault vim"
 }
 
-@test "completion bash-it: update - show no options" {
+@test "completion bash-it: update - show options" {
   run __check_completion 'bash-it update '
-  assert_line -n 0 ""
+  assert_line -n 0 "stable dev"
+}
+
+@test "completion bash-it: update - show optional flags" {
+  run __check_completion 'bash-it update -'
+  assert_line -n 0 "-s --silent"
 }
 
 @test "completion bash-it: search - show no options" {
@@ -75,32 +80,32 @@ function __check_completion () {
 
 @test "completion bash-it: show options" {
   run __check_completion 'bash-it '
-  assert_line -n 0 "disable enable help migrate reload doctor search show update version"
+  assert_line -n 0 "disable enable help migrate reload restart doctor search show update version"
 }
 
 @test "completion bash-it: bash-ti - show options" {
   run __check_completion 'bash-ti '
-  assert_line -n 0 "disable enable help migrate reload doctor search show update version"
+  assert_line -n 0 "disable enable help migrate reload restart doctor search show update version"
 }
 
 @test "completion bash-it: shit - show options" {
   run __check_completion 'shit '
-  assert_line -n 0 "disable enable help migrate reload doctor search show update version"
+  assert_line -n 0 "disable enable help migrate reload restart doctor search show update version"
 }
 
 @test "completion bash-it: bashit - show options" {
   run __check_completion 'bashit '
-  assert_line -n 0 "disable enable help migrate reload doctor search show update version"
+  assert_line -n 0 "disable enable help migrate reload restart doctor search show update version"
 }
 
 @test "completion bash-it: batshit - show options" {
   run __check_completion 'batshit '
-  assert_line -n 0 "disable enable help migrate reload doctor search show update version"
+  assert_line -n 0 "disable enable help migrate reload restart doctor search show update version"
 }
 
 @test "completion bash-it: bash_it - show options" {
   run __check_completion 'bash_it '
-  assert_line -n 0 "disable enable help migrate reload doctor search show update version"
+  assert_line -n 0 "disable enable help migrate reload restart doctor search show update version"
 }
 
 @test "completion bash-it: show - show options" {

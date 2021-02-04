@@ -1,7 +1,7 @@
 #!/usr/bin/env bats
 
 load ../test_helper
-load ../../lib/composure
+load "${BASH_IT}/vendor/github.com/erichs/composure/composure.sh"
 load ../../lib/log
 load ../../lib/helpers
 load ../../lib/utilities
@@ -46,7 +46,7 @@ function local_teardown {
     echo $plugin
     assert_line -n 1 -p $plugin
   done
-  assert_line -n 2 '  completions:  git   git_flow   git_flow_avh  '
+  assert_line -n 2 '  completions:  git   git_flow   git_flow_avh   github-cli  '
 }
 
 @test "search: ruby gem bundle rake rails" {
